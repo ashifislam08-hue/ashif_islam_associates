@@ -1,67 +1,122 @@
 body{
+font-family:Arial;
+margin:0;
+background:#0b1c3d;
+color:white;
+}
+
+header{
+background:#06142c;
+padding:20px;
+text-align:center;
+border-bottom:3px solid gold;
+}
+
+.logo{
+width:80px;
+}
+
+nav ul{
+display:flex;
+justify-content:center;
+list-style:none;
+padding:0;
+}
+
+nav li{
+margin:15px;
+}
+
+nav a{
+color:gold;
+text-decoration:none;
+font-weight:bold;
+}
+
+.hero{
+padding:60px;
+text-align:center;
+}
+
+.hero-box{
 display:grid;
-grid-template-columns:1fr 1fr;
-gap:40px;
-width:85%;
-margin:auto;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+margin-top:30px;
 }
 
-.contactForm input,
-.contactForm textarea{
+.hero-box div{
+background:#132c5b;
+padding:20px;
+border:1px solid gold;
+}
+
+section{
+padding:60px;
+}
+
+.services{
+display:flex;
+gap:30px;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.card{
+background:#132c5b;
+padding:20px;
+width:300px;
+border:1px solid gold;
+text-align:center;
+}
+
+.card img{
 width:100%;
-padding:12px;
-margin-bottom:10px;
+height:200px;
+object-fit:cover;
 }
 
-.contactForm button{
+.two-col{
+display:flex;
+align-items:center;
+gap:40px;
+flex-wrap:wrap;
+}
+
+.two-col img{
+width:400px;
+border:2px solid gold;
+}
+
+.contact-grid{
+display:flex;
+gap:40px;
+flex-wrap:wrap;
+}
+
+form{
+display:flex;
+flex-direction:column;
+gap:10px;
+width:300px;
+}
+
+input, textarea{
+padding:10px;
+border:none;
+}
+
+button{
 background:gold;
 border:none;
 padding:12px;
 font-weight:bold;
+cursor:pointer;
 }
 
 footer{
+background:#06142c;
 text-align:center;
-background:#06102a;
-padding:25px;
-margin-top:60px;
-}
-
-.whatsapp{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#25D366;
-color:white;
-padding:14px 18px;
-text-decoration:none;
-border-radius:30px;
-font-weight:bold;
-box-shadow:0 6px 20px rgba(0,0,0,0.4);
-}
-
-.reveal{
-opacity:0;
-transform:translateY(40px);
-transition:all 1s;
-}
-
-.reveal.active{
-opacity:1;
-transform:translateY(0);
-}
-
-@keyframes fadeUp{
-0%{opacity:0;transform:translateY(40px)}
-100%{opacity:1;transform:translateY(0)}
-}
-
-@media(max-width:900px){
-.twoCol{
-grid-template-columns:1fr;
-}
-
-.contactGrid{
-grid-template-columns:1fr;
-}
+padding:20px;
+border-top:3px solid gold;
 }
