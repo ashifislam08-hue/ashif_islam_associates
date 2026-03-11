@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Ashif Islam & Associates | GST, Income Tax & Accounting Consultant</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Roboto',sans-serif;}
 html{scroll-behavior:smooth;}
@@ -21,13 +21,7 @@ nav a:hover{color:#ffdd00;}
 /* Hero */
 .hero{background:url('images/cover.jpg') no-repeat center/cover;height:80vh;display:flex;justify-content:center;align-items:center;position:relative;}
 .hero::after{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,33,71,0.5);}
-.hero h2{opacity:0; position:relative;}
-
-/* Dashboard */
-.dashboard{background:#f8f8f8;padding:20px 0;position:sticky;top:90px;z-index:999;}
-.dashboard .container{display:flex;flex-wrap:wrap;justify-content:space-around;}
-.dashboard a{background:#002147;color:#fff;padding:15px 25px;margin:10px;border-radius:5px;text-decoration:none;font-weight:500;transition:0.3s;}
-.dashboard a:hover{background:#004080;}
+.hero h2{color:#fff;font-size:32px;text-align:center;position:relative;z-index:1;}
 
 /* Sections */
 section{padding:60px 0;}
@@ -36,16 +30,25 @@ h2{margin-bottom:40px;text-align:center;}
 
 /* Services */
 .services{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-around;}
-.service-card{flex:1 1 300px;background:#f1f1f1;padding:25px;border-radius:10px;text-align:center;transition:transform 0.4s,box-shadow 0.4s;opacity:0;transform:translateY(40px);}
+.service-card{flex:1 1 300px;background:#f1f1f1;padding:25px;border-radius:10px;text-align:left;transition:transform 0.4s,box-shadow 0.4s;opacity:0;transform:translateY(40px);}
 .service-card.visible{opacity:1;transform:translateY(0);}
 .service-card:hover{transform:translateY(-10px);box-shadow:0 10px 20px rgba(0,0,0,0.2);}
-.service-card img{width:100px;margin-bottom:15px;border-radius:10px;}
+
+/* Fix: show full images without cropping */
+.service-card img{
+  width:auto;
+  height:auto;
+  max-width:100px;  /* max size */
+  display:block;
+  margin:0 auto 15px auto;
+  border-radius:10px;
+}
 
 /* Sections with Images (Mission, Vision, Why Choose) */
 .section-img-text{display:flex;flex-wrap:wrap;align-items:center;gap:20px;margin-bottom:20px;opacity:0;transform:translateY(30px);transition:0.8s;}
 .section-img-text.visible{opacity:1;transform:translateY(0);}
 .section-img-text img{flex:1;min-width:300px;width:100%;border-radius:10px;}
-.section-img-text .text{flex:1;min-width:300px;}
+.section-img-text .text{flex:1;min-width:300px;padding-left:20px;}
 
 /* Contact Form */
 .contact-form{max-width:600px;margin:auto;opacity:0;transform:translateY(30px);transition:0.8s;}
@@ -58,28 +61,21 @@ h2{margin-bottom:40px;text-align:center;}
 footer{background:#002147;color:#fff;padding:20px 0;text-align:center;}
 footer a{color:#ffdd00;text-decoration:none;margin:0 10px;}
 
-/* Floating Book a Consultant Button */
-.book-consultant-btn {
-  position: fixed;
-  bottom:30px;
-  right:30px;
-  background:#25D366;
-  color:#fff;
-  padding:15px 20px;
-  border-radius:50px;
-  text-decoration:none;
-  font-weight:bold;
-  box-shadow:0 5px 15px rgba(0,0,0,0.3);
-  transition:0.3s;
-  z-index:10000;
-}
-.book-consultant-btn:hover { background:#128C7E; }
+/* Book a Consultant Button */
+.book-consultant-btn{position:fixed;bottom:30px;right:30px;background:#004080;color:#FFD700;padding:15px 25px;border-radius:50px;text-decoration:none;font-weight:bold;box-shadow:0 5px 15px rgba(0,0,0,0.3);cursor:pointer;z-index:10000;transition:background 0.3s;}
+.book-consultant-btn:hover{background:#002147;}
+
+/* Popup menu */
+#contactOptions{display:none;position:fixed;bottom:80px;right:30px;background:#fff;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,0.15);z-index:10001;font-family:'Roboto',sans-serif;min-width:180px;}
+#contactOptions a{display:block;padding:12px 20px;text-decoration:none;font-weight:bold;}
+#contactOptions a:nth-child(1){color:#25D366;border-bottom:1px solid #ddd;}
+#contactOptions a:nth-child(2){color:#004080;}
+#contactOptions a:hover{background:#f0f0f0;}
 
 /* Responsive */
 @media(max-width:768px){
-  .services, .section-img-text{flex-direction:column;align-items:center;}
+  .services,.section-img-text{flex-direction:column;align-items:center;}
   nav a{margin:5px;}
-  .dashboard .container{flex-direction:column;align-items:center;}
 }
 </style>
 </head>
@@ -88,7 +84,7 @@ footer a{color:#ffdd00;text-decoration:none;margin:0 10px;}
 <!-- Header -->
 <header>
   <div class="container">
-    <h1><img src="images/logo.jpg" alt="Logo"> Ashif Islam & Associates</h1>
+    <h1><img src="images/logo.jpg" alt="Ashif Islam & Associates Logo" /> Ashif Islam & Associates</h1>
     <nav>
       <a href="#hero">Home</a>
       <a href="#services">Services</a>
@@ -106,57 +102,83 @@ footer a{color:#ffdd00;text-decoration:none;margin:0 10px;}
   <h2>Your Trusted GST, Income Tax & Accounting Partner</h2>
 </section>
 
-<!-- Dashboard -->
-<!-- <section class="dashboard">
-  <div class="container">
-    <a href="#hero">Home</a>
-    <a href="#services">Services</a>
-    <a href="#mission">Our Mission</a>
-    <a href="#vision">Our Vision</a>
-    <a href="#why-choose">Why Choose Us</a>
-    <a href="#contact">Contact</a>
-    <a href="https://www.linkedin.com/in/ashif-islam-7a721717a">LinkedIn</a>
-  </div>
-</section> -->
-
 <!-- Services -->
 <section id="services">
   <div class="container">
     <h2>Our Services</h2>
     <div class="services">
+
       <div class="service-card">
-        <img src="images/gst.jpg" alt="GST Consulting">
-        <h3>GST Consulting</h3>
-        <p>Registration, return filing, compliance, and optimization — your business stays accurate and efficient.</p>
-        <p><strong>Affordable & Transparent Pricing</strong></p>
+        <img src="images/income_tax.jpg" alt="Income Tax">
+        <h3>Income Tax</h3>
+        <ul>
+          <li>Registration and filing for individuals & businesses</li>
+          <li>Tax planning & optimization</li>
+          <li>Preparation & submission of returns</li>
+          <li>Handling assessments & compliance notices</li>
+          <li><strong>Affordable & transparent pricing</strong></li>
+        </ul>
       </div>
+
       <div class="service-card">
-        <img src="images/tax.jpg" alt="Income Tax Filing">
-        <h3>Income Tax Filing</h3>
-        <p>Individual & corporate tax planning and preparation to save money and ensure compliance.</p>
-        <p><strong>Grow your business, we handle backend</strong></p>
+        <img src="images/gst_services.jpg" alt="GST Services">
+        <h3>GST Services</h3>
+        <ul>
+          <li>GST registration for businesses</li>
+          <li>Timely return filing & reconciliation</li>
+          <li>Input tax credit optimization</li>
+          <li>Audit & authority support</li>
+          <li><strong>Full-service support at transparent pricing</strong></li>
+        </ul>
       </div>
+
       <div class="service-card">
-        <img src="images/accounting.jpg" alt="Accounting Services">
-        <h3>Accounting Services</h3>
-        <p>Bookkeeping, payroll, and financial reporting handled professionally.</p>
-        <p><strong>Peace of mind for your business</strong></p>
+        <img src="images/accounting_bookkeeping.jpg" alt="Accounting & Bookkeeping">
+        <h3>Accounting & Bookkeeping</h3>
+        <ul>
+          <li>Daily bookkeeping & financial recording</li>
+          <li>Financial statement preparation</li>
+          <li>Payroll management & compliance</li>
+          <li>Bank reconciliation & expense tracking</li>
+          <li><strong>Reliable service for business growth</strong></li>
+        </ul>
       </div>
+
       <div class="service-card">
         <img src="images/pf_esic.jpg" alt="PF & ESIC">
-        <h3>PF & ESIC Registration & Returns</h3>
-        <p>Complete employee compliance managed efficiently so you don’t worry about backend processes.</p>
+        <h3>PF & ESIC Services</h3>
+        <ul>
+          <li>Employee registration under PF & ESIC</li>
+          <li>Monthly return filing & contribution management</li>
+          <li>Compliance assistance & benefit administration</li>
+          <li>Inspection & regulatory support</li>
+          <li><strong>Complete management with transparent pricing</strong></li>
+        </ul>
       </div>
+
       <div class="service-card">
-        <img src="images/ptax.jpg" alt="Professional Tax">
-        <h3>P. Tax Registration & Returns</h3>
-        <p>Professional Tax registration and timely return filing handled with expertise and care.</p>
+        <img src="images/p_tax.jpg" alt="Professional Tax">
+        <h3>Professional Tax Services</h3>
+        <ul>
+          <li>Registration & timely return filing</li>
+          <li>Payment & compliance support</li>
+          <li>Handling notices & clarifications</li>
+          <li><strong>Affordable & thorough service</strong></li>
+        </ul>
       </div>
+
       <div class="service-card">
-        <img src="images/custom_service.jpg" alt="Custom Business Support">
+        <img src="images/custom_business_support.jpg" alt="Custom Business Support">
         <h3>Custom Business Support</h3>
-        <p>Whatever service your business needs, we provide it at affordable pricing with full support — letting you focus on growth.</p>
+        <ul>
+          <li>Tailored services based on business needs</li>
+          <li>Registration, licenses & statutory compliance</li>
+          <li>Financial advisory for growth & efficiency</li>
+          <li>Ongoing bookkeeping & audits</li>
+          <li><strong>Flexible & transparent pricing</strong></li>
+        </ul>
       </div>
+
     </div>
   </div>
 </section>
@@ -164,10 +186,10 @@ footer a{color:#ffdd00;text-decoration:none;margin:0 10px;}
 <!-- Mission -->
 <section id="mission" style="background:#f1f1f1;">
   <div class="container section-img-text">
-    <img src="images/mission.jpg" alt="Mission Image">
+    <img src="images/mission.jpg" alt="Mission" />
     <div class="text">
       <h2>Our Mission</h2>
-      <p>We deliver expert financial services with integrity and clarity. Simplifying taxation & accounting, providing personalized advice, and supporting sustainable growth for every client.</p>
+      <p>Deliver expert financial services with integrity, transparency, and personalized care. Simplify GST, Income Tax, Accounting, and statutory requirements for local and small businesses.</p>
     </div>
   </div>
 </section>
@@ -175,21 +197,27 @@ footer a{color:#ffdd00;text-decoration:none;margin:0 10px;}
 <!-- Vision -->
 <section id="vision">
   <div class="container section-img-text">
-    <img src="images/vision.jpg" alt="Vision Image">
+    <img src="images/vision.jpg" alt="Vision" />
     <div class="text">
       <h2>Our Vision</h2>
-      <p>We aim to be the trusted partner for clients seeking dependable financial, GST, and income tax solutions — combining innovation, expertise, and client success.</p>
+      <p>Become the most trusted partner for small and medium-sized businesses by combining technology, expertise, and client-centric services.</p>
     </div>
   </div>
 </section>
 
-<!-- Why Choose -->
+<!-- Why Choose Us -->
 <section id="why-choose" style="background:#f1f1f1;">
   <div class="container section-img-text">
-    <img src="images/why-choose.jpg" alt="Why Choose Image">
+    <img src="images/why_choose.jpg" alt="Why Choose Us" />
     <div class="text">
       <h2>Why Choose Ashif Islam & Associates</h2>
-      <p>We combine deep financial expertise with a personalized approach. Save time, reduce errors, and grow your business while we handle backend operations. Affordable pricing, responsive support, and proven results.</p>
+      <ul>
+        <li>Expertise in GST, Income Tax, Accounting & compliance</li>
+        <li>Personalized service for your business</li>
+        <li>Affordable & Transparent pricing</li>
+        <li>Responsive & reliable support</li>
+        <li>Comprehensive services from registration to advisory</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -201,9 +229,9 @@ footer a{color:#ffdd00;text-decoration:none;margin:0 10px;}
     <p style="text-align:center;">Phone: +91‑6289189056 | Email: <a href="mailto:ashif.islam08@gmail.com">ashif.islam08@gmail.com</a></p>
     <div class="contact-form">
       <form action="contact.php" method="post">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <input type="tel" name="phone" placeholder="Your Mobile Number" required>
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <input type="tel" name="phone" placeholder="Your Mobile Number" required />
         <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
         <button type="submit">Submit Inquiry</button>
       </form>
@@ -217,21 +245,38 @@ footer a{color:#ffdd00;text-decoration:none;margin:0 10px;}
   <p><a href="https://www.linkedin.com/in/ashif-islam-7a721717a">LinkedIn</a></p>
 </footer>
 
-<!-- Floating Book a Consultant Buttons -->
-<a href="https://wa.me/916289189056?text=Hello%20Ashif%20Islam%20&%20Associates,%20I%20want%20to%20book%20a%20consultation." target="_blank" class="book-consultant-btn">WhatsApp</a>
+<!-- Book a Consultant Button -->
+<a href="#" id="bookConsultantBtn" class="book-consultant-btn">Book a Consultant</a>
 
-<a href="mailto:ashif.islam08@gmail.com?subject=Consultation%20Booking&body=Hello,%20I%20want%20to%20book%20a%20consultation." target="_blank" class="book-consultant-btn" style="bottom:90px;background:#004080;">Email</a>
+<!-- Contact Options Popup -->
+<div id="contactOptions">
+  <a href="https://wa.me/916289189056?text=Hello%20Ashif%20Islam%20%26%20Associates,%20I%20want%20to%20book%20a%20consultation." target="_blank">WhatsApp</a>
+  <a href="mailto:ashif.islam08@gmail.com?subject=Consultation%20Booking&body=Hello%20Ashif%20Islam%20%26%20Associates,%20I%20want%20to%20book%20a%20consultation." target="_blank">Email</a>
+</div>
 
 <script>
-  // Scroll reveal animation
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){entry.target.classList.add('visible');}
-    });
-  }, {threshold:0.2});
-  document.querySelectorAll('.service-card, .section-img-text, .contact-form').forEach(el=>observer.observe(el));
+const bookBtn = document.getElementById('bookConsultantBtn');
+const contactMenu = document.getElementById('contactOptions');
+
+bookBtn.addEventListener('click', e => {
+  e.preventDefault();
+  contactMenu.style.display = contactMenu.style.display === 'block' ? 'none' : 'block';
+});
+
+document.addEventListener('click', e => {
+  if(!bookBtn.contains(e.target) && !contactMenu.contains(e.target)){
+    contactMenu.style.display = 'none';
+  }
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){entry.target.classList.add('visible');}
+  });
+},{threshold:0.2});
+document.querySelectorAll('.service-card, .section-img-text, .contact-form').forEach(el=>observer.observe(el));
 </script>
 
 </body>
-
 </html>
