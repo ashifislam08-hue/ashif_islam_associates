@@ -1,1 +1,0 @@
-console.log("Ashif Islam & Associates website loaded.");
