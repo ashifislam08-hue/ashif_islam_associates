@@ -6,106 +6,388 @@
 <title>Ashif Islam & Associates | GST Consultant Kolkata</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
+/* ===== General Styles ===== */
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Roboto',sans-serif;}
 body{line-height:1.6;color:#333;font-size:16px;background:#fafafa;}
-header{background:#002147;color:#fff;padding:12px 0;position:sticky;top:0;z-index:1000;}
-header .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;width:90%;margin:auto;}
-header h1{display:flex;align-items:center;gap:10px;font-size:24px;}
-header h1 img{height:45px;}
-header h1 .gold-text{color:#FFD700;}
+h2{text-align:center;margin-bottom:30px;}
+section{padding:50px 0;}
+.container{width:90%;margin:auto;}
+
+/* ===== Header ===== */
+header{
+  background:#002147;
+  color:#fff;
+  padding:12px 0;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  
+}
+
+header .container{
+  position:relative; /* ✅ ADD THIS */
+}
+header .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;position:relative;}
+header h1 img{height:50px;}
+nav{
+  display:flex;
+  align-items:center;
+}
 nav a{color:#fff;margin-left:15px;text-decoration:none;font-weight:500;transition:0.3s;}
 nav a:hover{color:#FFD700;}
-.hero{background:linear-gradient(rgba(0,33,71,0.7),rgba(0,33,71,0.7)), url('images/cover.jpg');background-size:cover;background-position:center;height:60vh;display:flex;justify-content:center;align-items:center;text-align:center;color:#fff;}
-.hero h1{color:#FFD700;font-size:2.2rem;margin-bottom:10px;}
-.hero h2{font-size:1.5rem;}
-section{padding:50px 0;}
-h2{text-align:center;margin-bottom:30px;}
-.service-item{display:flex;flex-wrap:wrap;align-items:center;gap:15px;margin-bottom:20px;background:#fff;padding:20px;border-radius:10px;box-shadow:0 3px 10px rgba(0,0,0,0.1);}
+
+/* ===== Hero Section ===== */
+.hero{
+  position: relative;
+  width:100%;
+  height:100vh;
+  /* max-height:600px; */
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0.95;
+  z-index:1;
+  animation: floatWave 8s ease-in-out infinite alternate;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to right, rgba(255,255,255,0.95), rgba(255,255,255,0.6));
+  z-index:1;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.4);
+}
+/* SHOW CONTENT ONLY ON FIRST SLIDE */
+.hero-content{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#fff;
+  z-index:3;
+}
+
+/* HIDE CONTENT AFTER FIRST SLIDE */
+.hide-content{
+  opacity:0;
+  visibility:hidden;
+}
+.hero-text-3d{position:relative;width:100%;height:100%;perspective:1000px;animation: zoom3D 1.5s ease forwards;}
+.hero-top-left{position:absolute;top:20px;left:40px;}
+.hero-top-left .welcome-text{font-size:22px;font-style:italic;color:#1f3c68;margin-bottom:5px;}
+.main-title{font-size:48px;font-weight:bold;}
+.main-title .blue{color:#1f3c68;}
+.main-title .gold{color:#c89b3c;}
+.hero-subtitle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+font-size:28px;color:#1f3c68;text-align:center;line-height:1.4;}
+.hero-bottom-left{position:absolute;bottom:30px;left:40px;}
+.cta-btn{display:inline-block;background:#1f3c68;color:#fff;padding:14px 28px;border-radius:30px;text-decoration:none;font-weight:bold;transition:0.3s;}
+.cta-btn:hover{background:#c89b3c;}
+@keyframes zoom3D{
+  0%{opacity:0;transform:scale(0.8) rotateX(20deg);}
+  100%{opacity:1;transform:scale(1) rotateX(0deg);}
+}
+@keyframes floatWave{
+  0%{transform:translateY(0px);}
+  100%{transform:translateY(-25px);}
+}
+/* ===== Hero Slider ===== */
+.hero-slider{
+  position:absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  z-index:1;
+}
+
+.slide{
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:cover;   /* 👈 FIX */
+  object-position:center; /* 👈 center properly */
+  opacity:0;
+  transition: opacity 1s ease-in-out;
+}
+
+.slide.active{
+  opacity:1;
+}
+
+/* ===== Solutions Section ===== */
+.service-item{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:15px;
+  margin-bottom:20px;
+  background:#fff;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 3px 10px rgba(0,0,0,0.1);
+  transition: all 0.4s ease;
+  transform-style: preserve-3d;
+}
+.service-item:hover{
+  transform: scale(1.05) rotateY(3deg);
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+  border:2px solid #c89b3c;
+}
+.active-card{
+  transform: scale(1.08) rotateY(6deg);
+  border:2px solid #FFD700;
+}
 .service-item img{flex:1 1 250px;width:100%;max-width:350px;height:auto;border-radius:10px;object-fit:cover;}
 .service-text{flex:2 1 350px;}
 .service-text h3{margin-bottom:8px;color:#002147;}
 .service-text ul{list-style-type:disc;margin-left:20px;}
+.service-text ul li{margin-bottom:8px;font-size:0.95rem;}
+
+/* ===== Service Grid (Why Partner With Us & How We Work) ===== */
 .service-grid{display:flex;flex-wrap:wrap;gap:15px;justify-content:center;}
 .service-card{flex:1 1 220px;background:#fff;padding:20px;border-radius:10px;box-shadow:0 3px 8px rgba(0,0,0,0.1);text-align:center;margin-bottom:15px;}
 .service-card h3{margin-bottom:8px;color:#002147;}
 .service-card p{font-size:0.95rem;line-height:1.5;}
-.client-grid{display:flex;flex-wrap:wrap;gap:15px;justify-content:center;margin-bottom:20px;}
-.client-box{background:#fff;padding:12px 15px;border-radius:10px;box-shadow:0 3px 8px rgba(0,0,0,0.1);text-align:center;flex:1 1 150px;}
-.client-box h3{color:#002147;margin-bottom:4px;font-size:0.95rem;}
-.client-box p{font-size:0.9rem;}
-.testimonial{background:#fff;padding:15px;margin:10px auto;max-width:550px;border-radius:10px;box-shadow:0 3px 8px rgba(0,0,0,0.1);text-align:center;font-size:0.95rem;margin-bottom:20px;}
+
+/* ===== Section Image & Text ===== */
 .section-img-text{display:flex;flex-wrap:wrap;align-items:center;gap:15px;margin-bottom:20px;}
 .section-img-text img{flex:1;min-width:250px;width:100%;border-radius:10px;object-fit:cover;}
 .section-img-text .text{flex:1;min-width:250px;}
 .section-img-text .text ul{margin-top:10px;margin-left:20px;}
 .section-img-text .text ul li{margin-bottom:8px;font-size:0.95rem;}
+
+/* ===== Portfolio ===== */
+.client-grid{display:flex;flex-wrap:wrap;gap:15px;justify-content:center;margin-bottom:20px;}
+.client-box{background:#fff;padding:12px 15px;border-radius:10px;box-shadow:0 3px 8px rgba(0,0,0,0.1);text-align:center;flex:1 1 150px;}
+.client-box h3{color:#002147;margin-bottom:4px;font-size:0.95rem;}
+.client-box p{font-size:0.9rem;}
+
+/* ===== Testimonials ===== */
+.testimonial{background:#fff;padding:15px;margin:10px auto;max-width:550px;border-radius:10px;box-shadow:0 3px 8px rgba(0,0,0,0.1);text-align:center;font-size:0.95rem;margin-bottom:20px;}
+
+/* ===== Contact ===== */
 .contact-wrapper{display:flex;flex-wrap:wrap;gap:40px;}
 .office-info{flex:1;background:#fff;padding:25px;border-radius:10px;box-shadow:0 3px 10px rgba(0,0,0,0.1);}
 .office-info h3{color:#002147;margin-bottom:15px;}
-.office-info p{margin-bottom:10px;}
-.quote{margin-top:20px;font-style:italic;background:#f5f5f5;padding:15px;border-radius:8px;}
 .contact-form{flex:1;background:#fff;padding:25px;border-radius:10px;box-shadow:0 3px 10px rgba(0,0,0,0.1);}
 .contact-form input,.contact-form textarea,.contact-form select{width:100%;padding:10px;margin-bottom:12px;border:1px solid #ccc;border-radius:5px;}
 .contact-form button{background:#002147;color:#fff;padding:10px 18px;border:none;border-radius:5px;cursor:pointer;font-weight:bold;}
 .contact-form button:hover{background:#004080;}
+
+/* ===== Footer ===== */
 footer{background:#002147;color:#fff;padding:18px 0;text-align:center;font-size:0.9rem;}
-footer a{color:#ffdd00;text-decoration:none;margin:0 5px;}
+footer a{color:#ffdd00;text-decoration:none;margin:0 8px;}
+footer .social-icons a{margin:0 6px;display:inline-block;font-size:20px;color:#FFD700;}
+
+/* ===== Visitor Counter ===== */
+.visitor-counter{margin-top:20px;text-align:center;padding:10px 15px;background:#002147;color:#FFD700;border-radius:8px;box-shadow:0 3px 8px rgba(0,0,0,0.2);display:inline-block;font-family:'Roboto',sans-serif;}
+.visitor-counter h4{margin-bottom:6px;font-size:1rem;}
+.visitor-counter p{font-size:0.8rem;margin-top:4px;}
+
+/* ===== Responsive ===== */
 @media(max-width:768px){
-.service-item,.section-img-text{flex-direction:column;text-align:center;}
-.service-text ul{margin-left:0;padding-left:0;list-style-position:inside;}
-.service-item img,.section-img-text img{max-width:100%;height:auto;}
-.hero{height:auto;padding:60px 20px;}
-.contact-wrapper{flex-direction:column;}
+
+  .hero{
+    height:auto;
+    max-height:450px;
+    padding:200px 15px;
+  }
+
+  .hero-slider img{
+    object-fit:cover;
+    width:100%;
+    height:100%;
+
+
+  }
+.slide{
+  object-fit:contain;   /* mobile fix */
+  background:#000;
+}
+  .hero-text-3d{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+  }
+
+  .hero-top-left{
+    position:static;
+  }
+
+  .main-title{
+    font-size:28px;
+  }
+
+  .hero-subtitle{
+    position:static;
+    transform:none;
+    font-size:18px;
+    margin:15px 0;
+  }
+
+  .hero-bottom-left{
+    position:static;
+    justify-content:center;
+  }
+}
+/* ===== Hamburger Menu ===== */
+.menu-toggle{
+  display:none;
+  font-size:24px;
+  background:none;
+  border:none;
+  color:#fff;
+  cursor:pointer;
+  position:absolute;
+  right:20px;
+  top:18px;
+}
+
+/* ===== Mobile Menu ===== */
+@media(max-width:768px){
+
+  .menu-toggle{
+    display:block;
+    position:absolute;
+    right:20px;
+    top:18px;
+  }
+
+  nav{
+    display:none;
+    position:absolute;
+    top:65px;
+    left:0;
+    width:100%;
+    background:#002147;
+    flex-direction:column;
+    padding:10px 0;
+  }
+
+  nav a{
+    display:block;
+    padding:10px 15px;
+    margin:0;
+    border-top:1px solid rgba(255,255,255,0.1);
+  }
+
+    nav.show{
+    display:flex !important;
+  }
+/* ===== Footer Mobile Fix ===== */
+@media(max-width:768px){
+
+  footer{
+    text-align:center;
+    padding:20px 10px;
+  }
+
+  footer p{
+    font-size:0.85rem;
+  }
+
+  .social-icons{
+    margin-top:10px;
+  }
+
+  .visitor-counter{
+    margin-top:15px;
+    font-size:0.9rem;
+  }
 }
 </style>
+<!-- FontAwesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
+<!-- ===== Header ===== -->
 <header>
 <div class="container">
-<h1><img src="images/logo.jpg" alt="Logo" /> <span class="gold-text">Ashif Islam & Associates</span></h1>
-<nav>
- <a href="#hero">Home</a>
-  <a href="#solutions">Solutions</a>
-  <a href="#mission">Mission</a>
-  <a href="#vision">Vision</a>
-  <a href="#why-choose">Why Partner With Us?</a>
-  <a href="#msme">MSME Registered</a> <!-- New item -->
-  <a href="#how-work">How We Work</a>
-  <a href="#portfolio">Portfolio</a>
-  <a href="#testimonials">Testimonials</a>
-  <a href="#contact">Contact</a>
+<h1>
+<img src="images/logo.jpg" alt="Ashif Islam & Associates">
+</h1>
+<button class="menu-toggle" onclick="toggleMenu()">
+<i class="fas fa-bars"></i>
+</button>
+<nav id="menu">
+<a href="#hero">Home</a>
+<a href="#solutions">Solutions</a>
+<a href="#mission">Mission</a>
+<a href="#vision">Vision</a>
+<a href="#why-choose">Why Partner With Us?</a>
+<a href="#how-work">How We Work</a>
+<a href="#industries">Industries</a>
+<a href="#testimonials">Testimonials</a>
+<a href="#contact">Contact</a>
 </nav>
 </div>
 </header>
 
+<!-- ===== Hero Section ===== -->
 <section class="hero" id="hero">
-<div>
-<h1 class="gold-text">Welcome to Ashif Islam & Associates</h1>
-<h2>Your Trusted GST, Income Tax & Accounting Partner</h2>
-<p style="font-size:0.9rem; color:#FFD700;">MSME Registered: UDYAM-WB-10-0200060</p>
+<div class="hero-slider">
+  <img src="images/cover.jpg" class="slide active">
+  <img src="images/cover_1.jpeg" class="slide">
+  <img src="images/cover_2.jpeg" class="slide">
+  <img src="images/income_tax.jpg" class="slide">
+  <img src="images/cover_3.jpeg" class="slide">
+  
 </div>
+  <div class="hero-content show-on-first">
+    <div class="hero-text-3d">
+      <div class="hero-top-left">
+        <p class="welcome-text">Welcome to</p>
+        <h1 class="main-title"><span class="blue">Ashif Islam</span> <span class="gold">& Associates</span></h1>
+      </div>
+      <h2 class="hero-subtitle">Your Trusted GST, Income Tax & Accounting Partner</h2>
+      <div class="hero-bottom-left">
+        <a href="#contact" class="cta-btn">Get Free Consultation</a>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- Professional Solutions -->
+<!-- ===== Solutions Section ===== -->
 <section id="solutions" style="background:#f8f8f8;">
 <div class="container">
 <h2>Professional Solutions</h2>
 
+<!-- Income Tax -->
 <div class="service-item">
-<img src="images/income_tax.jpg" alt="Income Tax" />
+<img src="images/income_tax.jpg" alt="Income Tax">
 <div class="service-text">
 <h3>Income Tax</h3>
 <ul>
 <li>Individual & corporate tax planning and preparation.</li>
 <li>Registration, return filing, and compliance management.</li>
 <li>Tax-saving strategies for small businesses.</li>
+<li>We analyze financial documents, file returns accurately, and optimize liabilities for legal compliance.</li>
 </ul>
 </div>
 </div>
 
+<!-- GST Services -->
 <div class="service-item">
-<img src="images/gst_services.jpg" alt="GST Services" />
+<img src="images/gst.jpg" alt="GST Services">
 <div class="service-text">
 <h3>GST Services</h3>
 <ul>
@@ -113,49 +395,56 @@ footer a{color:#ffdd00;text-decoration:none;margin:0 5px;}
 <li>Monthly and quarterly GST return filing.</li>
 <li>Accurate reconciliation and compliance.</li>
 <li>Legal tax optimization.</li>
+<li>We ensure your GST returns are filed timely, reconcile invoices, claim eligible credits, and minimize penalties.</li>
 </ul>
 </div>
 </div>
 
+<!-- Accounting & Bookkeeping -->
 <div class="service-item">
-<img src="images/accounting_bookkeeping.jpg" alt="Accounting & Bookkeeping" />
+<img src="images/accounting.jpg" alt="Accounting & Bookkeeping">
 <div class="service-text">
 <h3>Accounting & Bookkeeping</h3>
 <ul>
 <li>Regular bookkeeping and payroll management.</li>
 <li>Financial reporting for business decisions.</li>
 <li>Audit support and compliance.</li>
+<li>We maintain organized books, track transactions, and provide insights for better financial planning and decision-making.</li>
 </ul>
 </div>
 </div>
 
+<!-- PF & ESIC Services -->
 <div class="service-item">
-<img src="images/pf_esic.jpg" alt="PF & ESIC Services" />
+<img src="images/pf_esic.jpg" alt="PF & ESIC Services">
 <div class="service-text">
 <h3>PF & ESIC Services</h3>
 <ul>
 <li>PF & ESIC registration and compliance.</li>
 <li>Monthly return filing.</li>
 <li>Employee record management.</li>
-<li>Reduce penalties and legal risk.</li>
+<li>We handle employee contributions, maintain accurate records, and ensure statutory compliance with minimal errors.</li>
 </ul>
 </div>
 </div>
 
+<!-- Professional Tax -->
 <div class="service-item">
-<img src="images/p_tax.jpg" alt="Professional Tax" />
+<img src="images/professional_tax.jpg" alt="Professional Tax">
 <div class="service-text">
 <h3>Professional Tax</h3>
 <ul>
 <li>Professional Tax registration for businesses.</li>
 <li>Timely return filing as per government deadlines.</li>
 <li>Full compliance management.</li>
+<li>We register, file, and manage professional tax obligations efficiently, preventing penalties and legal issues.</li>
 </ul>
 </div>
 </div>
 
+<!-- Custom Business Support -->
 <div class="service-item">
-<img src="images/custom_business_support.jpg" alt="Custom Business Support" />
+<img src="images/custom_support.jpg" alt="Custom Business Support">
 <div class="service-text">
 <h3>Custom Business Support</h3>
 <ul>
@@ -163,6 +452,7 @@ footer a{color:#ffdd00;text-decoration:none;margin:0 5px;}
 <li>Financial planning and tax consultation.</li>
 <li>Assistance with new business registrations.</li>
 <li>Ongoing backend support for growth.</li>
+<li>We provide tailored support including registration, financial strategy, compliance monitoring, and continuous advisory services.</li>
 </ul>
 </div>
 </div>
@@ -170,10 +460,10 @@ footer a{color:#ffdd00;text-decoration:none;margin:0 5px;}
 </div>
 </section>
 
-<!-- Mission -->
+<!-- ===== Mission ===== -->
 <section id="mission" style="background:#f1f1f1;">
 <div class="container section-img-text">
-<img src="images/mission.jpg" alt="Our Mission" />
+<img src="images/mission.jpg" alt="Our Mission">
 <div class="text">
 <h2>Our Mission</h2>
 <ul>
@@ -189,10 +479,10 @@ footer a{color:#ffdd00;text-decoration:none;margin:0 5px;}
 </div>
 </section>
 
-<!-- Vision -->
+<!-- ===== Vision ===== -->
 <section id="vision">
 <div class="container section-img-text">
-<img src="images/vision.jpg" alt="Our Vision" />
+<img src="images/vision.jpg" alt="Our Vision">
 <div class="text">
 <h2>Our Vision</h2>
 <ul>
@@ -208,84 +498,105 @@ footer a{color:#ffdd00;text-decoration:none;margin:0 5px;}
 </div>
 </section>
 
-<!-- Why Partner With Us? -->
+<!-- ===== Why Partner With Us ===== -->
 <section id="why-choose" style="background:#ffffff;">
 <div class="container">
 <h2>Why Partner With Us?</h2>
-
 <div class="service-grid">
 
 <div class="service-card">
 <h3>Experienced Professionals</h3>
-<p>Expert guidance for GST, Income Tax, and compliance services.</p>
+<p>Expert guidance for GST, Income Tax, and compliance services. Our certified professionals ensure accurate filings, advisory support, and complete compliance.</p>
 </div>
 
 <div class="service-card">
 <h3>Affordable Pricing</h3>
-<p>Transparent pricing without hidden charges.</p>
+<p>Transparent pricing without hidden charges. No surprises – you know exactly what you pay for each service.</p>
 </div>
 
 <div class="service-card">
 <h3>Zero Penalty Goals</h3>
-<p>We prioritize deadlines to ensure your business stays 100% compliant with zero late fees.</p>
+<p>We prioritize deadlines to ensure your business stays 100% compliant with zero late fees. Avoid fines and legal issues with timely management.</p>
 </div>
 
 <div class="service-card">
 <h3>Fast Compliance</h3>
-<p>Timely filings to avoid penalties and legal risks.</p>
+<p>Timely filings to avoid penalties and legal risks. Our team ensures all returns and registrations are handled quickly and accurately.</p>
 </div>
 
 <div class="service-card">
 <h3>Dedicated Support</h3>
-<p>Quick response for all client queries.</p>
+<p>Quick response for all client queries. Our support team is always available to solve problems, provide guidance, and offer professional advice.</p>
 </div>
-
-<!-- MSME Registration -->
-<section id="msme" style="background:#f1f1f1; padding:30px 0;">
-  <div class="container" style="text-align:center;">
-    <h3 style="color:#002147; margin-bottom:10px;">MSME Registered</h3>
-    <p style="font-size:0.95rem; color:#333; margin:0;">
-      Certificate Number: <b>UDYAM-WB-10-0200060</b>
-    </p>
-    <p style="font-size:0.9rem; color:#555; margin-top:6px;">
-      This certification ensures credibility, compliance, and professional trust.
-    </p>
-  </div>
-</section>
 
 </div>
 </div>
 </section>
 
-<!-- How We Work -->
+<!-- ===== How We Work ===== -->
 <section id="how-work" style="background:#f8f8f8;">
 <div class="container">
 <h2>How We Work</h2>
 <div class="service-grid">
-<div class="service-card"><h3>1. Consultation</h3><p>Discuss your tax or compliance requirements with our experts.</p></div>
-<div class="service-card"><h3>2. Documentation</h3><p>We collect and verify all required financial documents for processing.</p></div>
-<div class="service-card"><h3>3. Processing</h3><p>Our team completes filings, compliance tasks, and record maintenance.</p></div>
-<div class="service-card"><h3>4. Delivery</h3><p>Receive confirmation along with professional advice and support.</p></div>
+<div class="service-card"><h3>1. Consultation</h3><p>Discuss your tax or compliance requirements with our experts. We understand your business needs and provide tailored advice.</p></div>
+<div class="service-card"><h3>2. Documentation</h3><p>We collect and verify all required financial documents for processing, ensuring accuracy and compliance.</p></div>
+<div class="service-card"><h3>3. Processing</h3><p>Our team completes filings, compliance tasks, and record maintenance efficiently, minimizing errors and delays.</p></div>
+<div class="service-card"><h3>4. Delivery</h3><p>Receive confirmation along with professional advice and support. We ensure you are fully informed and compliant.</p></div>
 </div>
 </div>
 </section>
 
-<!-- Portfolio -->
-<section id="portfolio" style="background:#f7f7f7;">
+<!-- ===== Portfolio ===== -->
+<section id="industries" style="background:#f7f7f7;">
 <div class="container">
-<h2>Our Trusted Portfolio</h2>
-<div class="client-grid">
-<div class="client-box"><h3>M/S J.S. Store</h3><p>Retail & Fashion Business</p></div>
-<div class="client-box"><h3>M/S Aman Enterprise</h3><p>Retail & General Business</p></div>
-<div class="client-box"><h3>Attract Collection</h3><p>Retail & Fashion Business</p></div>
-<div class="client-box"><h3>Gandhi Travel Service</h3><p>Travel & Transport Services</p></div>
-<div class="client-box"><h3>R Square</h3><p>Local Business</p></div>
-<div class="client-box"><h3>Star Motor</h3><p>Automobile Service Provider</p></div>
+<h2>Business Journey Support & Industries We Serve</h2>
+<p style="text-align:center; max-width:700px; margin:10px auto 30px;">
+From business registration to long-term compliance and growth, we support clients across multiple industries with reliable financial solutions.
+</p>
+
+<div class="service-grid">
+
+<div class="service-card">
+<h3>🚀 Business Startup</h3>
+<p>We assist in company formation, GST registration, and all legal setups required to start your business smoothly and compliantly.</p>
 </div>
+
+<div class="service-card">
+<h3>📊 Growing Businesses</h3>
+<p>Accounting, GST filing, payroll, and compliance services designed to support expanding businesses and improve financial efficiency.</p>
+</div>
+
+<div class="service-card">
+<h3>🏢 Established Enterprises</h3>
+<p>Advanced tax planning, audit support, and financial advisory to optimize performance and reduce liabilities.</p>
+</div>
+
+<div class="service-card">
+<h3>🔄 Full Lifecycle Support</h3>
+<p>From registration to daily compliance and long-term growth strategy — we handle your backend while you focus on business success.</p>
+</div>
+
+</div>
+
+<br>
+
+<h2>Industries We Serve</h2>
+
+<div class="client-grid">
+
+<div class="client-box"><h3>Retail & Fashion</h3><p>GST, billing & inventory support</p></div>
+<div class="client-box"><h3>Travel & Transport</h3><p>Tax compliance & reporting</p></div>
+<div class="client-box"><h3>Automobile Services</h3><p>Accounting & GST filing</p></div>
+<div class="client-box"><h3>Small Businesses</h3><p>End-to-end compliance solutions</p></div>
+<div class="client-box"><h3>Service Providers</h3><p>Income tax & bookkeeping</p></div>
+<div class="client-box"><h3>Local Enterprises</h3><p>Affordable compliance support</p></div>
+
+</div>
+
 </div>
 </section>
 
-<!-- Testimonials -->
+<!-- ===== Testimonials ===== -->
 <section id="testimonials" style="background:#f8f8f8;">
 <div class="container">
 <h2>Client Testimonials</h2>
@@ -303,7 +614,10 @@ footer a{color:#ffdd00;text-decoration:none;margin:0 5px;}
 
 <div class="office-info">
 <h3>Office Information</h3>
-<p><b>Location:</b><br>Kolkata, West Bengal, India</p>
+<p><b>Address:</b><br>
+11A Topsia Road, Kolkata - 700039<br>
+50 Golam Jilani Khan Road, Kolkata - 700039
+</p>
 <p><b>Phone:</b><br>+91 6289189056</p>
 <p><b>Email:</b><br>ashif.islam08@gmail.com</p>
 <div class="quote">
@@ -315,7 +629,7 @@ footer a{color:#ffdd00;text-decoration:none;margin:0 5px;}
 
 <div class="contact-form">
 <h3>Inquiry Form</h3>
-<form action="contact.php" method="post">
+<form onsubmit="alert('Thank you! We will contact you soon.'); return false;">
 <input type="text" name="name" placeholder="Your Name" required />
 <input type="email" name="email" placeholder="Your Email" required />
 <input type="tel" name="phone" placeholder="Your Mobile Number" required />
@@ -337,49 +651,92 @@ footer a{color:#ffdd00;text-decoration:none;margin:0 5px;}
 </div>
 </section>
 
-<!-- Visitor Counter -->
-<div style="margin-top:20px; text-align:center; padding:10px 15px; background:#002147; color:#FFD700; border-radius:8px; box-shadow:0 3px 8px rgba(0,0,0,0.2); display:inline-block; font-family:'Roboto',sans-serif;">
-  <h4 style="margin-bottom:6px; font-size:1rem;">🌟 Total Visitors</h4>
-  
-  <!-- FreeCounterStat Widget (6 digits) -->
-  <div id="sfcydkq6b5gmnw2msemb275sq6m2kwfysfg"></div>
-  <script type="text/javascript" src="https://counter1.optistats.ovh/private/counter.js?c=ydkq6b5gmnw2msemb275sq6m2kwfysfg&digits=6&down=async" async></script>
-  
-  <noscript>
-    <a href="https://www.freecounterstat.com" title="free stat counter">
-      <img src="https://counter1.optistats.ovh/private/freecounterstat.php?c=ydkq6b5gmnw2msemb275sq6m2kwfysfg&digits=6" border="0" title="free stat counter" alt="free stat counter">
-    </a>
-  </noscript>
-
-  <p style="font-size:0.8rem; margin-top:4px;">Visitors from around the world 🌍</p>
-</div>
-
-<!-- Footer -->
 <footer>
-<p>&copy; 2026 Ashif Islam & Associates | All Rights Reserved</p>
-<p>MSME Registered: UDYAM-WB-10-0200060</p>
-<p>
-<a href="terms.html" target="_blank">Terms & Conditions</a> |
-<a href="legal.html" target="_blank">Legal Notice</a> |
-<a href="https://wa.me/916289189056" target="_blank">WhatsApp</a> |
-<a href="mailto:ashif.islam08@gmail.com">Email</a> |
-<a href="https://www.linkedin.com/in/ashif-islam-7a721717a" target="_blank">LinkedIn</a>
-</p>
+  <p>&copy; 2026 Ashif Islam & Associates | All Rights Reserved</p>
+
+  <p>
+    <a href="#">Legal Notice</a> | 
+    <a href="#">Terms & Conditions</a>
+  </p>
+
+  <p>MSME Registration: UDYAM-WB-10-0200060</p>
+
+  <div class="social-icons">
+    <a href="https://www.facebook.com/ashifislamassociates/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://wa.me/919876543210" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href="mailto:info@ashifislamassociates.com"><i class="fas fa-envelope"></i></a>
+  </div>
+
+  <!-- Visitor Counter (ONLY ONE) -->
+  <div class="container" style="text-align:center; margin-top:15px;">
+    <div class="visitor-counter">
+      <h4>Visitors</h4>
+      <p id="visitor-count">0</p>
+    </div>
+  </div>
 </footer>
 
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+  // ===== Visitor Counter =====
+  let count = localStorage.getItem('visitorCount');
+
+  if(count === null){
+    count = 1000; // start from 1000
+  } else {
+    count = parseInt(count) + 1;
+  }
+
+  localStorage.setItem('visitorCount', count);
+
+  let counter = document.getElementById('visitor-count');
+  if(counter){
+    counter.innerText = count;
+  }
+
+  // ===== HERO SLIDER =====
+ let slides = document.querySelectorAll(".slide");
+let index = 0;
+let content = document.querySelector(".hero-content");
+
+if(slides.length > 0){
+  setInterval(() => {
+    slides[index].classList.remove("active");
+
+    index = (index + 1) % slides.length;
+
+    slides[index].classList.add("active");
+
+    // 👇 CONTENT ONLY FIRST IMAGE
+    if(index === 0){
+      content.classList.remove("hide-content");
+    } else {
+      content.classList.add("hide-content");
+    }
+
+  }, 3000);
+}
+
+  // ===== SERVICE CLICK EFFECT =====
+  document.querySelectorAll('.service-item').forEach(item => {
+    item.addEventListener('click', () => {
+      item.classList.add('active-card');
+
+      setTimeout(() => {
+        item.classList.remove('active-card');
+      }, 300);
+    });
+  });
+
+});
+
+// ===== MOBILE MENU =====
+function toggleMenu() {
+  const menu = document.getElementById("menu");
+  menu.classList.toggle("show");
+}
+</script>
 </body>
 </html>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ashif Islam & Associates | GST Consultant Kolkata</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-<style>
-/* (Your existing CSS unchanged) */
-</style>
-</head>
-
-<body>
